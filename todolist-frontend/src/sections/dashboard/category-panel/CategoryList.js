@@ -9,16 +9,16 @@ const styles = {
     }
 }
 
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, selectedId, onCategorySelect }) => {
     return (
         <div style={styles.list}>
             {categories.map((category) => (
                 <CategoryItem 
                     id={category.id} 
                     title={category.name}
-                    isSelected={category.isSelected} 
+                    isSelected={category.id == selectedId} 
                     action={<CategoryAction/>}
-                    onClicked={() => {}} />
+                    onClicked={onCategorySelect} />
             ))} 
         </div>
     );

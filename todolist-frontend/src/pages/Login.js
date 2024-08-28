@@ -15,7 +15,7 @@ const Login = () => {
       <div style={styles.noteContainer}>
         <div style={styles.note}>
           <p style={styles.noteText}>To do:</p>
-          <p style={styles.noteText}><strong>Fuck all</strong></p>
+          {/* <p style={styles.noteText}><strong>Fuck all</strong></p> */}
         </div>
       </div>
     </div>
@@ -24,8 +24,7 @@ const Login = () => {
 
 const styles = {
   form: {
-    // Additional styles for the form div
-    padding: 'inherit',  // Inherit padding from the formContainer
+    padding: 'inherit', 
     paddingLeft: 0,
     paddingRight: 0,
   },

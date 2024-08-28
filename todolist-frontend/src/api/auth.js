@@ -18,11 +18,7 @@ function AuthApi() {
                 password
             }),
         fetchUserInfo: (token) => 
-            axios.get('/api/usersId', {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-            })
+            axios.get('/api/usersId')
     }
 };
 

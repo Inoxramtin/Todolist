@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 // api
 import AuthApi from '../api/auth';
+// utils
+import axios from '../utils/axios';
 
 const AuthContext = createContext();
 
@@ -12,6 +14,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       AuthApi.fetchUserInfo(token)
         .then(response => setUser(response.data))
         .catch(() => setUser(null));
@@ -24,6 +27,7 @@ const AuthProvider = ({ children }) => {
     if (response.status === 200) {
       const { jwt:token } = response.data;
       localStorage.setItem('token', token);
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       const userResponse = await AuthApi.fetchUserInfo(token);
       const userData = await userResponse.json();
       setUser(userData);
@@ -32,6 +36,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    delete axios.defaults.headers.common.Authorization;
     setUser(null);
   };
 
